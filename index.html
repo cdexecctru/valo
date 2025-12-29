@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant x Kyedae Giveaway</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #16171A; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; height: 80px; background: rgba(17, 18, 20, 0.95); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; z-index: 1000; }
+        .nav-container { width: 100%; max-width: 1280px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
+        .logo-box img { height: 30px; }
+        .menu-links { display: flex; gap: 30px; list-style: none; }
+        .menu-links a { color: #888; text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .menu-links a:hover { color: white; }
+        .spin-now-header { background: #FF4655; color: white; padding: 10px 20px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 12px; border-radius: 4px; }
+
+        /* --- HERO --- */
+        .hero { height: 850px; display: flex; justify-content: center; align-items: flex-end; background: url('main-bg.png') center/cover; position: relative; }
+        .hero-container { width: 100%; max-width: 1300px; height: 100%; display: flex; justify-content: space-between; align-items: center; position: relative; padding: 0 40px; }
+        .hero-text { flex: 1.2; z-index: 10; margin-bottom: 100px; }
+        .main-title { font-size: 80px; font-weight: 900; line-height: 0.85; margin-bottom: 30px; }
+        .btn-red { background: #FF4655; color: white; padding: 15px 40px; text-decoration: none; font-weight: 900; border-radius: 4px; display: inline-block; transition: 0.3s; }
+        .hero-gift { position: absolute; right: 34%; top: 22%; z-index: 15; }
+        .hero-gift img { width: 170px; filter: drop-shadow(0 0 30px rgba(255, 70, 85, 0.4)); }
+        .hero-character img { max-height: 850px; object-fit: contain; z-index: 5; margin-right: -50px; }
+
+        /* --- RULET --- */
+        .roulette-area { padding: 100px 0; background: #111214; text-align: center; }
+        .r-window { position: relative; width: 100%; max-width: 1200px; height: 300px; margin: 40px auto; overflow: hidden; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        .r-pointer { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 100; width: 35px; }
+        .r-rail { display: flex; position: absolute; left: 0; top: 30px; }
+        .item-card { min-width: 250px; height: 240px; margin: 0 10px; background-size: 100% 100%; display: flex; align-items: center; justify-content: center; position: relative; }
+        .item-card img { width: 160px; height: 160px; object-fit: contain; }
+        .item-card span { position: absolute; top: 15px; right: 20px; font-size: 10px; font-weight: 900; color: black; }
+        .spin-btn { background: #FF4655; color: white; border: none; padding: 18px 80px; font-size: 20px; font-weight: 900; border-radius: 50px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+
+        /* --- FAQ --- */
+        .faq-section { padding: 80px 0; background: #16171A; text-align: center; }
+        .faq-container { width: 100%; max-width: 800px; margin: 0 auto; }
+        .faq-item { margin-bottom: 10px; }
+        .faq-btn { background: #FF4655; color: white; width: 100%; padding: 20px; border: none; font-weight: 900; font-size: 16px; text-transform: uppercase; cursor: pointer; border-radius: 4px; }
+        .faq-content { background: #1F2326; max-height: 0; overflow: hidden; transition: 0.3s ease-out; padding: 0 20px; text-align: left; }
+        .faq-content p { padding: 20px 0; color: #ccc; font-size: 14px; line-height: 1.6; }
+
+        /* --- FOOTER (KÜÇÜLTÜLMÜŞ) --- */
+        footer { padding: 40px 0; background: #111214; text-align: center; border-top: 1px solid #333; }
+        .footer-legal { color: #555; font-size: 11px; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase; }
+        .footer-single-img img { width: 220px; height: auto; opacity: 0.6; }
+
+        /* --- POPUP --- */
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(10px); }
+        .popup-box { background: #1F2326; width: 450px; padding: 40px; border-radius: 12px; text-align: center; border: 1px solid #333; }
+        .win-card { width: 100%; height: 220px; background-size: 100% 100%; margin: 25px 0; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 8px; }
+        .win-card img { width: 150px; }
+        .win-card span { position: absolute; top: 15px; right: 20px; font-size: 12px; font-weight: 900; color: black; }
+        .claim-btn { background: #FF4655; color: white; border: none; width: 100%; padding: 15px; font-size: 18px; font-weight: 900; border-radius: 4px; cursor: pointer; text-decoration: none; display: block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box"><img src="logo.png"></div>
+            <nav><ul class="menu-links"><li><a href="#faq">FAQ</a></li><li><a href="#roulette">Roulette</a></li><li><a href="#">Social</a></li><li><a href="#">Support</a></li></ul></nav>
+            <a href="#roulette" class="spin-now-header">Spin Now</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <p style="color:#FF4655; font-weight:900; font-style:italic; margin-bottom:10px;">THE CREATOR GIVEAWAY</p>
+                    <h1 class="main-title">VALORANT<br>X KYEDAE</h1>
+                    <a href="#roulette" class="btn-red">SPIN</a>
+                </div>
+                <div class="hero-gift"><img src="gift.png"></div>
+                <div class="hero-character"><img src="kyedae.png"></div>
+            </div>
+        </section>
+
+        <section class="roulette-area" id="roulette">
+            <h1 style="font-size: 40px; font-weight: 900; margin-bottom: 20px;">SPIN ROULETTE</h1>
+            <div class="r-window">
+                <img src="pointer.png" class="r-pointer">
+                <div class="r-rail" id="rail"></div>
+            </div>
+            <button class="spin-btn" id="spinBtn" onclick="doSpin()">Spin</button>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <h1 style="margin-bottom: 40px; font-weight: 900;">FAQ</h1>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-btn" onclick="toggleFaq(this)">Promotion and Brand</button>
+                    <div class="faq-content"><p>We collaborate with leading Valorant creators like Kyedae to bring you exclusive skin giveaways.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn" onclick="toggleFaq(this)">When will I receive my skin?</button>
+                    <div class="faq-content"><p>Skins are typically delivered within 24 hours after the giveaway ends. Make sure your Riot ID is linked and up to date.</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-legal">© 2020-2025 Riot Games, Inc. RIOT GAMES, VALORANT and any associated logos are trademarks, service marks, and/or registered trademarks of Riot Games, Inc.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Notice</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Preferences</a>
+        </div>
+        <div class="footer-single-img">
+            <img src="footer.png" alt="Riot Valorant ESRB Combined">
+        </div>
+    </footer>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-box">
+            <h2>CONGRATULATIONS</h2>
+            <p style="color:#888; margin-top: 5px;">Proceed to get you reward</p>
+            <div class="win-card" id="winCard">
+                <span id="winName"></span>
+                <img src="" id="winImg">
+            </div>
+            <a href="auth.html" class="claim-btn">Claim</a>
+        </div>
+    </div>
+
+    <script>
+        const rail = document.getElementById('rail');
+        const items = [
+            { n: "Arcane Sheriff", i: "arcanesheriff.png", r: "rare.png" },
+            { n: "Champ Butterfly", i: "champbutter.png", r: "rare.png" },
+            { n: "Glitchpop Vandal", i: "glpopvandal.png", r: "epic.png" },
+            { n: "RGX Karambit", i: "rgxkarambit.png", r: "epic.png" },
+            { n: "Cup O' Crown", i: "cupbuddy.png", r: "common.png" }
+        ];
+
+        function init() {
+            rail.innerHTML = '';
+            for(let i=0; i<100; i++) {
+                const item = items[Math.floor(Math.random()*items.length)];
+                const div = document.createElement('div');
+                div.className = 'item-card';
+                div.style.backgroundImage = `url('${item.r}')`;
+                div.innerHTML = `<span>${item.n}</span><img src="${item.i}">`;
+                rail.appendChild(div);
+            }
+        }
+        init();
+
+        function doSpin() {
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            const cardWidth = 270; 
+            const landingIndex = 80; 
+            const offset = (landingIndex * cardWidth) - (rail.parentElement.offsetWidth / 2) + (cardWidth / 2);
+            
+            rail.style.transition = "transform 6s cubic-bezier(0.15, 0, 0.05, 1)";
+            rail.style.transform = `translateX(-${offset}px)`;
+
+            setTimeout(() => {
+                const allCards = rail.querySelectorAll('.item-card');
+                const winCard = allCards[landingIndex];
+                
+                document.getElementById('winName').innerText = winCard.querySelector('span').innerText;
+                document.getElementById('winImg').src = winCard.querySelector('img').src;
+                document.getElementById('winCard').style.backgroundImage = winCard.style.backgroundImage;
+                document.getElementById('popup').style.display = 'flex';
+            }, 6500);
+        }
+
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+            } else {
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+</html>
