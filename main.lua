@@ -10,7 +10,7 @@ local function ultraClick()
     task.spawn(function()
         while pressing do
             -- Tek bir dongude 10 kez bas-cek yapiyoruz (CPU'yu zorlar ama cok hizlidir)
-            for i = 1, 250 do
+            for i = 1, 100 do
                 VIM:SendKeyEvent(true, Enum.KeyCode.F, false, game)
                 VIM:SendKeyEvent(false, Enum.KeyCode.F, false, game)
             end
