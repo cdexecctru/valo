@@ -1,44 +1,34 @@
--- F_Clicker.lua
--- Bu script 'L' tusu ile F basimini baslatir/durdurur.
-
-print("--- SISTEM YUKLENDI! ---")
-print("Komut: 'L' tusuna basarak baslat/durdur.")
+print("--- ULTRA HIZLI MOD YUKLENDI! ---")
+warn("DIKKAT: Asiri hizdan oyun donabilir veya kick yiyebilirsin.")
 
 local UIS = game:GetService("UserInputService")
 local VIM = game:GetService("VirtualInputManager")
 local pressing = false
 
--- Ana Dongu Fonksiyonu
-local function startClicking()
+-- Ultra Hizli Dongu
+local function ultraClick()
     task.spawn(function()
         while pressing do
-            -- F Tusuna Bas ve Bırak
-            VIM:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-            VIM:SendKeyEvent(false, Enum.KeyCode.F, false, game)
-            
-            -- Saniyede 10k hedefi icin en dusuk bekleme
-            -- Oyunun FPS limitine gore en yuksek hizi verir.
-            task.wait() 
+            -- Tek bir dongude 10 kez bas-cek yapiyoruz (CPU'yu zorlar ama cok hizlidir)
+            for i = 1, 10 do
+                VIM:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+                VIM:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+            end
+            -- Roblox'un cokmemesi icin en kucuk nefes alma payi
+            game:GetService("RunService").Stepped:Wait()
         end
     end)
 end
 
--- Tus Dinleyici
 UIS.InputBegan:Connect(function(input, processed)
-    -- Chat (sohbet) aciksa calismasin
     if processed then return end
-    
     if input.KeyCode == Enum.KeyCode.L then
         pressing = not pressing
-        
         if pressing then
-            print("calistim! -> F basilıyor...")
-            startClicking()
+            print("calistim! -> DEHSET MODU AKTIF")
+            ultraClick()
         else
             print("DURDURULDU!")
         end
     end
 end)
-
--- Scriptin yuklendigine dair son bir teyit
-warn("F Clicker aktif, 'L' tusuna basman bekleniyor.")
